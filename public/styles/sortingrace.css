@@ -1,0 +1,234 @@
+:root {
+  --primary: #00f7ff;
+  --secondary: #ff00f7;
+  --bg-dark: #0a0a20;
+  --bg-darker: #050510;
+  --text: #e0e0ff;
+  --highlight: #ff5500;
+}
+
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  font-family: 'Orbitron', sans-serif;
+  background-color: var(--bg-darker);
+  color: var(--text);
+  min-height: 100vh;
+  background-image: 
+    radial-gradient(circle at 20% 30%, rgba(0, 247, 255, 0.1) 0%, transparent 20%),
+    radial-gradient(circle at 80% 70%, rgba(255, 0, 247, 0.1) 0%, transparent 20%);
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 2rem;
+}
+
+header {
+  text-align: center;
+  margin-bottom: 2rem;
+  padding: 1.5rem;
+  background-color: rgba(10, 10, 32, 0.7);
+  border-radius: 10px;
+  border: 1px solid var(--primary);
+  box-shadow: 0 0 20px rgba(0, 247, 255, 0.2);
+}
+
+h1 {
+  font-size: 2.5rem;
+  margin-bottom: 1.5rem;
+  color: var(--primary);
+  text-shadow: 0 0 10px var(--primary);
+  letter-spacing: 2px;
+}
+
+.controls {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 1.5rem;
+  flex-wrap: wrap;
+}
+
+.control-group {
+  display: flex;
+  align-items: center;
+  gap: 0.5rem;
+}
+
+label {
+  font-weight: bold;
+  color: var(--primary);
+}
+
+input[type="range"] {
+  width: 150px;
+  -webkit-appearance: none;
+  height: 8px;
+  background: var(--bg-dark);
+  border-radius: 5px;
+  border: 1px solid var(--primary);
+}
+
+input[type="range"]::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  width: 18px;
+  height: 18px;
+  background: var(--highlight);
+  border-radius: 50%;
+  cursor: pointer;
+  box-shadow: 0 0 5px var(--highlight);
+}
+
+select {
+  padding: 0.3rem 0.5rem;
+  background-color: var(--bg-dark);
+  color: var(--text);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  font-family: inherit;
+}
+
+.buttons {
+  display: flex;
+  justify-content: center;
+  gap: 1rem;
+  flex-wrap: wrap;
+}
+
+button {
+  padding: 0.7rem 1.5rem;
+  background-color: var(--bg-dark);
+  color: var(--primary);
+  border: 1px solid var(--primary);
+  border-radius: 5px;
+  font-family: inherit;
+  font-weight: bold;
+  cursor: pointer;
+  transition: all 0.3s;
+  text-transform: uppercase;
+  letter-spacing: 1px;
+}
+
+button:hover {
+  background-color: var(--primary);
+  color: var(--bg-darker);
+  box-shadow: 0 0 15px var(--primary);
+}
+
+button:disabled {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+#sort-btn {
+  background-color: var(--primary);
+  color: var(--bg-darker);
+  font-weight: bold;
+}
+
+#sort-btn:hover:not(:disabled) {
+  background-color: var(--highlight);
+  border-color: var(--highlight);
+  box-shadow: 0 0 20px var(--highlight);
+}
+
+.visualizer {
+  display: flex;
+  align-items: flex-end;
+  height: 400px;
+  gap: 2px;
+  padding: 1rem;
+  background-color: rgba(10, 10, 32, 0.5);
+  border-radius: 10px;
+  border: 1px solid var(--secondary);
+  box-shadow: 0 0 20px rgba(255, 0, 247, 0.2);
+  margin-bottom: 1.5rem;
+}
+
+.bar {
+  flex: 1;
+  background-color: var(--primary);
+  transition: height 0.2s, background-color 0.1s;
+  border-radius: 3px 3px 0 0;
+  position: relative;
+}
+
+.bar::after {
+  content: attr(data-value);
+  position: absolute;
+  bottom: -25px;
+  left: 50%;
+  transform: translateX(-50%);
+  font-size: 0.7rem;
+  color: var(--text);
+}
+
+.bar.comparing {
+  background-color: var(--highlight);
+  box-shadow: 0 0 10px var(--highlight);
+}
+
+.bar.swapping {
+  background-color: var(--secondary);
+  box-shadow: 0 0 10px var(--secondary);
+}
+
+.bar.sorted {
+  background-color: #00ff88;
+  box-shadow: 0 0 10px #00ff88;
+}
+
+.stats {
+  display: flex;
+  justify-content: center;
+  gap: 2rem;
+  margin-bottom: 2rem;
+  font-size: 1.1rem;
+  color: var(--primary);
+}
+
+.stats div {
+  background-color: rgba(10, 10, 32, 0.7);
+  padding: 0.7rem 1.5rem;
+  border-radius: 5px;
+  border: 1px solid var(--primary);
+}
+
+.explanation {
+  background-color: rgba(10, 10, 32, 0.7);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid var(--primary);
+}
+
+.explanation h2 {
+  color: var(--primary);
+  margin-bottom: 1rem;
+  text-align: center;
+}
+
+#algorithm-explanation {
+  line-height: 1.6;
+}
+
+@media (max-width: 768px) {
+  .controls {
+    flex-direction: column;
+    align-items: center;
+    gap: 1rem;
+  }
+  
+  h1 {
+    font-size: 1.8rem;
+  }
+  
+  .visualizer {
+    height: 300px;
+  }
+}

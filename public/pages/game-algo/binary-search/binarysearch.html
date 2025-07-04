@@ -5,6 +5,44 @@
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Binary Search Guess</title>
   <link rel="stylesheet" href="/styles/dijikstra.css" />
+  <style>
+    /* Tambahan styling khusus input agar sejajar & matching */
+    .controls {
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      gap: 10px;
+      margin-top: 20px;
+      flex-wrap: wrap; /* agar responsif */
+    }
+
+    .input {
+      padding: 10px;
+      font-size: 16px;
+      border-radius: 8px;
+      border: none;
+      outline: none;
+      width: 200px;
+      box-shadow: 0 0 5px rgba(255, 255, 255, 0.5);
+    }
+
+    .btn {
+      padding: 10px 20px;
+      font-size: 16px;
+      background-color: orange;
+      border: none;
+      border-radius: 10px;
+      color: black;
+      box-shadow: 0 0 5px white;
+      cursor: pointer;
+      text-decoration: none;
+      text-align: center;
+    }
+
+    .btn:hover {
+      background-color: #ffb84d;
+    }
+  </style>
 </head>
 <body>
   <div class="container">
@@ -14,7 +52,7 @@
       <input type="number" id="guessInput" min="1" max="100" placeholder="Masukkan tebakan (1-100)" class="input" />
       <button class="btn" id="guessButton">Tebak</button>
       <button class="btn" id="resetButton">Reset</button>
-      <a href="/game-algo/listgame.html" class="btn" id="backButton">Kembali</a>
+      <a href="/pages/game-algo/listgame.html" class="btn" id="backButton">Kembali</a>
     </div>
     <div class="rules">
       <h2>Aturan Main</h2>
@@ -35,7 +73,7 @@
   </div>
   <script type="module" src="binarysearch.js"></script>
   <audio id="backgroundMusic" loop autoplay>
-    <source src="src/assets/minecraft-fortnite-roblox-background-music-368024.mp3" type="audio/mp3">
+    <source src="/assets/minecraft-fortnite-roblox-background-music-368024.mp3" type="audio/mp3">
   </audio>
 </body>
 </html>

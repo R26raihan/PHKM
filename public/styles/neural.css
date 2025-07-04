@@ -1,0 +1,440 @@
+:root {
+  --primary: #4a6fa5;
+  --secondary: #166088;
+  --accent: #4fc3f7;
+  --background: #f5f7fa;
+  --text: #333;
+  --neuron: #ff7043;
+  --positive: #4caf50;
+  --negative: #f44336;
+  --progress: #4fc3f7;
+}
+
+body {
+  font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif;
+  background-color: var(--background);
+  color: var(--text);
+  margin: 0;
+  padding: 20px;
+  line-height: 1.6;
+}
+
+.container {
+  max-width: 1200px;
+  margin: 0 auto;
+  background-color: white;
+  padding: 30px;
+  border-radius: 12px;
+  box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+}
+
+h1, h2 {
+  color: var(--secondary);
+  text-align: center;
+  margin-bottom: 15px;
+}
+
+.description {
+  text-align: center;
+  margin-bottom: 30px;
+  color: #555;
+  font-size: 1.1em;
+  max-width: 800px;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+.help-text {
+  font-size: 0.9em;
+  color: #777;
+  margin-top: 10px;
+  line-height: 1.4;
+}
+
+.control-panel, .status-panel, .weight-change-container {
+  background-color: #f9f9f9;
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  margin-bottom: 25px;
+}
+
+.control-group {
+  margin-bottom: 20px;
+  border-bottom: 1px solid #eee;
+  padding-bottom: 15px;
+}
+.control-group:last-child {
+  border-bottom: none;
+  margin-bottom: 0;
+  padding-bottom: 0;
+}
+
+label {
+  display: block;
+  margin-bottom: 8px;
+  font-weight: 700;
+  color: var(--primary);
+  font-size: 1.05em;
+}
+
+.architecture-controls {
+  margin-top: 10px;
+}
+
+#layer-controls {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+  margin-top: 10px;
+  justify-content: center;
+}
+
+.layer-control {
+  display: flex;
+  align-items: center;
+  background-color: #eef4f8;
+  padding: 8px 15px;
+  border-radius: 25px;
+  border: 1px solid #dde7f0;
+}
+
+.layer-control label {
+  margin-right: 8px;
+  margin-bottom: 0;
+  font-weight: 500;
+  color: #555;
+}
+
+.layer-control input {
+  width: 50px;
+  padding: 6px;
+  border: 1px solid #ccc;
+  border-radius: 5px;
+  text-align: center;
+  font-size: 0.9em;
+}
+
+.remove-layer {
+  background: none;
+  border: none;
+  color: #f44336;
+  cursor: pointer;
+  margin-left: 8px;
+  font-weight: bold;
+  font-size: 1.2em;
+  transition: transform 0.2s;
+}
+.remove-layer:hover {
+  transform: scale(1.2);
+}
+
+button {
+  background-color: var(--primary);
+  color: white;
+  border: none;
+  padding: 12px 20px;
+  border-radius: 6px;
+  cursor: pointer;
+  font-weight: 600;
+  margin-right: 15px;
+  transition: all 0.3s ease;
+  font-size: 1em;
+  box-shadow: 0 3px 6px rgba(0, 0, 0, 0.1);
+}
+
+button:hover {
+  background-color: var(--secondary);
+  transform: translateY(-3px);
+  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.15);
+}
+
+button:active {
+  transform: translateY(0);
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+button:disabled {
+  background-color: #cccccc;
+  cursor: not-allowed;
+  opacity: 0.8;
+  transform: none;
+  box-shadow: none;
+}
+
+.button-group {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+  margin-top: 25px;
+}
+
+#train-btn.pulse {
+  animation: pulse 2s infinite;
+}
+
+@keyframes pulse {
+  0% {
+    box-shadow: 0 0 0 0 rgba(74, 111, 165, 0.7);
+  }
+  70% {
+    box-shadow: 0 0 0 15px rgba(74, 111, 165, 0);
+  }
+  100% {
+    box-shadow: 0 0 0 0 rgba(74, 111, 165, 0);
+  }
+}
+
+#training-status {
+  font-weight: 600;
+  margin-bottom: 12px;
+  color: var(--secondary);
+  font-size: 1.1em;
+  text-align: center;
+}
+
+.progress-container {
+  height: 12px;
+  background-color: #e0e0e0;
+  border-radius: 6px;
+  overflow: hidden;
+  margin-top: 10px;
+}
+
+#training-progress {
+  height: 100%;
+  width: 0%;
+  background-color: var(--progress);
+  transition: width 0.3s ease;
+  border-radius: 6px;
+}
+
+.visualization-container {
+  display: flex;
+  gap: 25px;
+  margin-bottom: 25px;
+  flex-wrap: wrap; /* Izinkan wrapping pada layar yang lebih kecil */
+  align-items: flex-start; /* Sejajarkan item ke atas */
+}
+
+.network-visualization, .chart-container {
+  flex: 1;
+  background-color: #f9f9f9; /* Latar belakang konsisten */
+  padding: 25px;
+  border-radius: 10px;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+  min-height: 450px; /* Pastikan tinggi minimum */
+  max-height: 550px; /* Sedikit mengurangi tinggi maksimum untuk kepadatan */
+  overflow-y: auto; /* Tambahkan scroll jika konten melebihi tinggi maksimum */
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: flex-start;
+}
+
+.network-visualization h2, .chart-container h2 {
+  margin-top: 0;
+  margin-bottom: 10px;
+}
+
+.network-visualization .help-text, .chart-container .help-text {
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+/* Gaya baru untuk div struktur jaringan internal */
+.network-structure-inner {
+  display: flex;
+  justify-content: space-around;
+  align-items: flex-start; /* Sejajarkan lapisan ke atas */
+  width: 100%;
+  height: 100%; /* Isi tinggi parent */
+  position: relative;
+  flex-grow: 1; /* Izinkan untuk tumbuh di dalam network-visualization */
+}
+
+.layer {
+  display: flex;
+  flex-direction: column; /* Tumpuk neuron secara vertikal secara default */
+  justify-content: flex-start; /* Sejajarkan neuron ke atas di dalam lapisannya */
+  align-items: center;
+  margin: 0 10px; /* Sesuaikan jarak antar lapisan, sedikit lebih kecil */
+  position: relative;
+}
+
+.neuron {
+  width: 45px; /* Mengurangi ukuran neuron */
+  height: 45px; /* Mengurangi ukuran neuron */
+  background-color: var(--neuron);
+  border-radius: 50%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  color: white;
+  font-weight: bold;
+  margin: 6px 0; /* Mengurangi margin vertikal antar neuron */
+  position: relative;
+  transition: all 0.3s ease;
+  border: 2px solid rgba(255, 255, 255, 0.5);
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2);
+  z-index: 2; /* Pastikan neuron berada di atas koneksi */
+  font-size: 0.85em; /* Ukuran font sedikit lebih kecil */
+}
+
+.neuron.active {
+  transform: scale(1.2);
+  box-shadow: 0 0 20px rgba(255, 112, 67, 0.9), 0 0 30px rgba(255, 112, 67, 0.5);
+  border-color: white;
+}
+
+.connections-container {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none; /* Izinkan klik melewati */
+  z-index: 1;
+}
+
+.connection {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.2);
+  height: 2px;
+  transform-origin: 0 0;
+  z-index: 1; /* Pastikan koneksi berada di belakang neuron */
+  transition: all 0.3s ease;
+  pointer-events: none;
+}
+
+.connection.active {
+  height: 4px;
+  box-shadow: 0 0 8px rgba(255, 255, 255, 0.8);
+}
+
+.weight-change {
+  margin-bottom: 18px;
+  padding: 15px;
+  background-color: #f0f8ff; /* Light blue background for changes */
+  border-radius: 8px;
+  border-left: 5px solid var(--accent);
+  transition: all 0.3s ease;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.05);
+}
+
+.weight-change:hover {
+  transform: translateX(8px);
+  box-shadow: 0 4px 12px rgba(0, 0, 0, 0.1);
+}
+
+.weight-change h3 {
+  margin-top: 0;
+  color: var(--secondary);
+  font-size: 1.15em;
+  margin-bottom: 10px;
+}
+
+.weight-details {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.weight-value {
+  padding: 8px 12px;
+  border-radius: 6px;
+  font-family: 'Courier New', monospace;
+  font-size: 0.9em;
+  transition: all 0.3s ease;
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.weight-value strong {
+  font-size: 1.1em;
+  margin-bottom: 3px;
+}
+
+.weight-value span {
+  font-size: 0.85em;
+  opacity: 0.9;
+}
+
+.positive {
+  background-color: rgba(76, 175, 80, 0.15);
+  border: 1px solid var(--positive);
+  color: #388e3c;
+}
+
+.negative {
+  background-color: rgba(244, 67, 54, 0.15);
+  border: 1px solid var(--negative);
+  color: #d32f2f;
+}
+
+/* Penyesuaian responsif */
+@media (max-width: 900px) {
+  .visualization-container {
+    flex-direction: column;
+  }
+  .network-visualization, .chart-container {
+    width: 100%;
+    min-height: 300px; /* Tinggi minimum sedikit lebih kecil pada layar yang lebih kecil */
+    max-height: 450px; /* Sesuaikan tinggi maksimum */
+  }
+  .network-structure-inner {
+    flex-direction: row; /* Tata letak lapisan secara horizontal pada layar yang lebih kecil */
+    align-items: flex-start; /* Sejajarkan lapisan ke atas untuk tata letak horizontal */
+    overflow-x: auto; /* Tambahkan scroll horizontal jika lapisan meluap */
+    justify-content: flex-start; /* Sejajarkan lapisan ke awal */
+  }
+  .layer {
+    flex-direction: column; /* Neuron masih menumpuk secara vertikal di dalam lapisan */
+    margin: 0 10px; /* Margin lebih kecil antar lapisan */
+    min-width: 80px; /* Pastikan lapisan tidak terlalu sempit */
+  }
+  .neuron {
+    margin: 5px; /* Margin lebih kecil untuk tata letak horizontal lapisan */
+    width: 40px;
+    height: 40px;
+    font-size: 0.8em;
+  }
+}
+
+@media (max-width: 600px) {
+  .container {
+    padding: 15px;
+  }
+  h1 {
+    font-size: 1.8em;
+  }
+  h2 {
+    font-size: 1.4em;
+  }
+  .button-group {
+    flex-direction: column;
+    gap: 10px;
+  }
+  button {
+    width: 100%;
+    margin-right: 0;
+  }
+  .layer-control {
+    flex-direction: column;
+    align-items: flex-start;
+    padding: 10px;
+    border-radius: 10px;
+  }
+  .layer-control label {
+    margin-bottom: 5px;
+  }
+  .layer-control input {
+    width: 80px;
+  }
+  .weight-value {
+    width: 100%;
+    align-items: center;
+  }
+}

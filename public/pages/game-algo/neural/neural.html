@@ -1,0 +1,99 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Visualisasi Pelatihan Jaringan Saraf</title>
+  <link rel="stylesheet" href="/styles/neural.css">
+  <link rel="stylesheet" href="/styles/dijikstra.css">
+  <script src="https://cdn.jsdelivr.net/npm/chart.js"></script>
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/animejs/3.2.1/anime.min.js"></script>
+</head>
+<body>
+  <div class="container">
+    <h1>Visualisasi Pelatihan Jaringan Saraf</h1>
+    <p class="description">
+      Jelajahi bagaimana jaringan saraf belajar untuk memecahkan masalah sederhana (masalah XOR).
+      Anda dapat mengubah arsitektur jaringan, laju pembelajaran, dan jumlah epoch.
+      Perhatikan bagaimana neuron aktif, koneksi berubah, dan kerugian (loss) menurun selama pelatihan.
+    </p>
+
+    <div class="control-panel">
+      <h2>Pengaturan Jaringan</h2>
+      <div class="control-group">
+        <label>Arsitektur Jaringan:</label>
+        <div class="architecture-controls">
+          <button id="add-layer">+ Tambah Lapisan Tersembunyi</button>
+          <div id="layer-controls">
+            <!-- Lapisan akan ditambahkan di sini -->
+          </div>
+        </div>
+      </div>
+      
+      <div class="control-group">
+        <label for="learning-rate">Laju Pembelajaran (Learning Rate): <span id="learning-rate-value">0.1</span></label>
+        <input type="range" id="learning-rate" min="0.001" max="1" step="0.001" value="0.1">
+        <p class="help-text">
+          Seberapa besar jaringan menyesuaikan bobotnya di setiap langkah.
+          Nilai yang lebih tinggi berarti pembelajaran lebih cepat tetapi mungkin tidak stabil.
+        </p>
+      </div>
+      
+      <div class="control-group">
+        <label for="epochs">Epochs (Iterasi Pelatihan):</label>
+        <input type="number" id="epochs" min="1" max="1000" value="50">
+        <p class="help-text">
+          Jumlah kali seluruh dataset pelatihan dilewatkan melalui jaringan.
+          Lebih banyak epoch berarti lebih banyak pembelajaran.
+        </p>
+      </div>
+      
+      <div class="button-group">
+        <button id="train-btn" class="pulse">Latih Jaringan</button>
+        <button id="reset-btn">Reset Jaringan</button>
+        <a href="/pages/game-algo/listgame.html" class="btn" id="backButton">Kembali</a>
+      </div>
+    </div>
+    
+    <div class="status-panel">
+      <h2>Status Pelatihan</h2>
+      <div id="training-status">Siap untuk melatih</div>
+      <div class="progress-container">
+        <div id="training-progress"></div>
+      </div>
+    </div>
+    
+    <div class="visualization-container">
+      <div class="network-visualization" id="network">
+        <h2>Visualisasi Jaringan Saraf</h2>
+        <p class="help-text">
+          Lingkaran adalah neuron. Garis adalah koneksi (bobot).
+          Warna neuron menunjukkan aktivasinya (semakin cerah, semakin aktif).
+          Warna koneksi menunjukkan bobotnya (hijau: positif, merah: negatif).
+          Koneksi yang lebih tebal berarti bobot yang lebih kuat.
+        </p>
+      </div>
+      <div class="chart-container">
+        <h2>Grafik Kerugian (Loss)</h2>
+        <canvas id="loss-chart"></canvas>
+        <p class="help-text">
+          Grafik ini menunjukkan seberapa baik jaringan melakukan pekerjaannya.
+          Tujuan kami adalah agar "Loss" mendekati nol, yang berarti jaringan membuat prediksi yang akurat.
+        </p>
+      </div>
+    </div>
+    
+    <div class="weight-change-container">
+      <h2>Perubahan Bobot Selama Pelatihan</h2>
+      <div id="weight-changes"></div>
+      <p class="help-text">
+        Bagian ini menunjukkan bagaimana bobot koneksi berubah di setiap epoch.
+        Perubahan positif (hijau) berarti bobot meningkat, perubahan negatif (merah) berarti bobot menurun.
+        Ini adalah inti dari bagaimana jaringan saraf belajar!
+      </p>
+    </div>
+  </div>
+
+  <script src="neural.js"></script>
+</body>
+</html>
