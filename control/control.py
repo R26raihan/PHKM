@@ -157,7 +157,7 @@ async def websocket_endpoint(websocket: WebSocket):
 # Endpoint untuk halaman HTML
 @app.get("/", response_class=HTMLResponse)
 async def get_motor_page():
-    folder_path = "../computervision-game"
+    folder_path = "/computervision-game"
     html_content = ""
     
     try:
