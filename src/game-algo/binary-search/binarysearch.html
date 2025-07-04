@@ -1,0 +1,38 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Binary Search Guess</title>
+  <link rel="stylesheet" href="/src/styles/binarysearch.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Tebak Angka Rahasia</h1>
+    <canvas id="gameCanvas" width="1000" height="500"></canvas>
+    <div class="controls">
+      <input type="number" id="guessInput" min="1" max="100" placeholder="Masukkan tebakan (1-100)" class="input" />
+      <button class="btn" id="guessButton">Tebak</button>
+      <button class="btn" id="resetButton">Reset</button>
+      <a href="/src/game-algo/listgame.html" class="btn" id="backButton">Kembali</a>
+    </div>
+    <div class="rules">
+      <h2>Aturan Main</h2>
+      <p>1. Tebak angka rahasia antara 1 dan 100.</p>
+      <p>2. Masukkan tebakan di kotak input, lalu klik "Tebak".</p>
+      <p>3. Petunjuk akan muncul (terlalu tinggi/rendah).</p>
+      <p>4. Kamu punya 7 kesempatan. Jika habis, game over.</p>
+      <p>5. Jika tebakan benar, kamu menang!</p>
+    </div>
+    <div class="guide">
+      <h2>Panduan Main</h2>
+      <p>1. Klik "Tebak" setelah memasukkan angka.</p>
+      <p>2. Perhatikan petunjuk di grid kanan.</p>
+      <p>3. Gunakan logika binary search untuk cepat menang.</p>
+      <p>4. Reset untuk memulai ulang permainan.</p>
+      <p>5. Kembali ke daftar game dengan tombol "Kembali".</p>
+    </div>
+  </div>
+  <script type="module" src="binarysearch.js"></script>
+</body>
+</html>

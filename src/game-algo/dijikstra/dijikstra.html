@@ -1,0 +1,37 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>Dijkstra Treasure Hunt</title>
+  <link rel="stylesheet" href="/src/styles/dijikstra.css" />
+</head>
+<body>
+  <div class="container">
+    <h1>Mencari jalur</h1>
+    <canvas id="gameCanvas" width="1000" height="500"></canvas>
+    <div>
+      <button class="btn" id="startButton">Mulai Main</button>
+      <button class="btn" id="resetButton">Reset</button>
+      <a href="/src/game-algo/listgame.html" class="btn" id="backButton">Kembali</a>
+    </div>
+    <div class="rules">
+      <h2>Aturan Main</h2>
+      <p>1. Mulai dari kotak hijau dan capai kotak merah.</p>
+      <p>2. Klik kotak di sekitar untuk bergerak (atas, bawah, kiri, kanan).</p>
+      <p>3. Hindari kotak hitam (rintangan) dan pilih jalur yang benar.</p>
+      <p>4. Jika salah jalur atau menabrak rintangan, game over.</p>
+      <p>5. Saat game over, jalur terpendek akan ditampilkan.</p>
+    </div>
+    <div class="guide">
+      <h2>Panduan Main</h2>
+      <p>1. Klik "Mulai Main" untuk memulai permainan.</p>
+      <p>2. Klik kotak di grid kanan untuk membentuk jalur Anda.</p>
+      <p>3. Kotak hijau adalah start, kotak merah adalah tujuan.</p>
+      <p>4. Jika menang, Anda akan mencapai harta karun!</p>
+      <p>5. Gunakan "Reset" untuk memulai ulang permainan.</p>
+    </div>
+  </div>
+  <script type="module" src="dijikstra.js"></script>
+</body>
+</html>

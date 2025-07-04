@@ -1,0 +1,120 @@
+/* General Styles */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #393536;
+    color: #f68c11;
+    margin: 0;
+    padding: 0;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    overflow: hidden;
+}
+
+/* Form Container */
+.form-container {
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border: 4px solid #f68c11;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(246, 140, 17, 0.6);
+    text-align: center;
+    width: 300px;
+}
+
+/* Heading */
+.form-container h2 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Input Fields */
+.form-container input {
+    width: 100%;
+    padding: 10px;
+    margin: 10px 0;
+    border: 2px solid #f68c11;
+    border-radius: 5px;
+    background-color: #393536;
+    color: #f68c11;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 0.8rem;
+    outline: none;
+}
+
+.form-container input::placeholder {
+    color: #f68c11;
+    opacity: 0.7;
+}
+
+/* Button */
+.form-container button {
+    width: 100%;
+    padding: 12px;
+    background-color: #f68c11;
+    color: #393536;
+    border: none;
+    border-radius: 5px;
+    font-family: 'Press Start 2P', cursive;
+    font-size: 1rem;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    margin-top: 10px;
+}
+
+.form-container button:hover {
+    background-color: #ff9f1c;
+    transform: translateY(-3px);
+    box-shadow: 0 0 10px rgba(246, 140, 17, 0.8);
+}
+
+/* Link */
+.form-container p {
+    font-size: 0.8rem;
+    margin-top: 15px;
+}
+
+.form-container a {
+    color: #f68c11;
+    text-decoration: none;
+    transition: color 0.3s ease;
+}
+
+.form-container a:hover {
+    color: #ff9f1c;
+}
+
+/* Background Animation */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #f68c11, #393536, #f68c11, #393536);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% {
+        background-position: 0% 50%;
+    }
+    50% {
+        background-position: 100% 50%;
+    }
+    100% {
+        background-position: 0% 50%;
+    }
+}
+
+#login-message, #register-message {
+    margin-top: 10px;
+    font-size: 14px;
+    font-family: 'Press Start 2P', cursive; /* Sesuai font Anda */
+    text-align: center;
+}

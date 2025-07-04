@@ -1,0 +1,121 @@
+/* style.css */
+@import url('https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap');
+
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #393536;
+    color: #f68c11;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #f68c11, #393536, #f68c11, #393536);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+.container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 20px;
+    border: 4px solid #f68c11;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(246, 140, 17, 0.6);
+    width: 90%;
+    max-width: 1000px; /* Diperbesar untuk canvas lebar */
+    margin: 20px auto;
+    position: relative;
+    z-index: 1;
+}
+
+h1 {
+    font-size: 1.5rem;
+    margin-bottom: 20px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+canvas {
+    border: 2px solid #f68c11;
+    border-radius: 10px;
+    box-shadow: 0 0 15px rgba(246, 140, 17, 0.6);
+    background-color: rgba(57, 53, 54, 0.9);
+}
+
+.btn {
+    display: inline-block;
+    padding: 10px 20px;
+    background-color: #f68c11;
+    color: #393536;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 0.9rem;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(246, 140, 17, 0.8);
+    transition: all 0.3s ease;
+    margin: 10px;
+}
+
+.btn:hover {
+    background-color: #ff9f1c;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(246, 140, 17, 1);
+}
+
+.rules, .guide {
+    margin-top: 20px;
+    text-align: left;
+    color: #fff;
+}
+
+.rules h2, .guide h2 {
+    font-size: 1.2rem;
+    color: #f68c11;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+    margin-bottom: 10px;
+}
+
+.rules p, .guide p {
+    font-size: 0.8rem;
+    line-height: 1.5;
+    margin: 5px 0;
+}
+
+@media (max-width: 768px) {
+    .container {
+        width: 95%;
+        padding: 15px;
+    }
+    h1 {
+        font-size: 1.2rem;
+    }
+    .btn {
+        font-size: 0.8rem;
+        padding: 8px 16px;
+    }
+    .rules h2, .guide h2 {
+        font-size: 1rem;
+    }
+    .rules p, .guide p {
+        font-size: 0.7rem;
+    }
+}

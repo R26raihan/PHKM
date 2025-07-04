@@ -1,0 +1,80 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Power Pamplona with Computer Vision | Algoplay</title>
+    <link rel="stylesheet" href="../styles/motor.css">
+    <link href="https://fonts.googleapis.com/css2?family=Press+Start+2P&display=swap" rel="stylesheet">
+</head>
+<body>
+    <div class="container">
+        <img src="../assets/Algo Play.png" alt="Algoplay Logo" class="logo">
+        <h1>motox3mpoolparty with Computer Vision</h1>
+        
+        <div class="game-grid">
+            <div class="game-section">
+                <h2>Game</h2>
+                <div class="iframe-container">
+                    <iframe src="https://www.friv.com/z/games/sprintclubnitro/game.html" class="game-iframe" id="game-iframe"></iframe>
+                </div>
+            </div>
+            <div class="vision-section">
+                <h2>Computer Vision Feed</h2>
+                <img id="vision-feed" class="vision-feed" src="" alt="Vision Feed">
+                <p id="action-text">Action: No Action</p>
+                <p id="connection-status" class="error-message">Connecting to webcam...</p>
+            </div>
+        </div>
+        
+        <nav class="menu">
+            <a href="../computervision-game/listgame.html" class="btn">Back to Game List</a>
+            <a href="../pages/logout.html" class="btn">Logout</a>
+        </nav>
+    </div>
+
+    <script>
+        const ws = new WebSocket("ws://192.168.1.9:8000/ws");
+        const visionFeed = document.getElementById("vision-feed");
+        const actionText = document.getElementById("action-text");
+        const connectionStatus = document.getElementById("connection-status");
+        const gameIframe = document.getElementById("game-iframe");
+
+        // Berikan fokus ke iframe saat halaman dimuat
+        window.addEventListener('load', () => {
+            gameIframe.focus();
+            console.log("Iframe focused");
+        });
+
+        ws.onmessage = (event) => {
+            const data = event.data;
+            if (data.startsWith("frame:")) {
+                const frameData = data.replace("frame:", "");
+                visionFeed.src = frameData;
+                connectionStatus.style.display = "none";
+            } else if (data.startsWith("action:")) {
+                const action = data.replace("action:", "");
+                actionText.textContent = `Action: ${action}`;
+            }
+        };
+
+        ws.onopen = () => {
+            console.log("WebSocket connected");
+            connectionStatus.textContent = "Webcam connected!";
+            connectionStatus.style.color = "#0f0";
+        };
+
+        ws.onerror = (error) => {
+            console.error("WebSocket error:", error);
+            connectionStatus.textContent = "Failed to connect to webcam. Please check the server.";
+            connectionStatus.style.color = "#f00";
+        };
+
+        ws.onclose = () => {
+            console.log("WebSocket disconnected");
+            connectionStatus.textContent = "Webcam disconnected.";
+            connectionStatus.style.color = "#f00";
+        };
+    </script>
+</body>
+</html>

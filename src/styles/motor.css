@@ -1,0 +1,169 @@
+/* General Styles */
+body {
+    font-family: 'Press Start 2P', cursive;
+    background-color: #393536;
+    color: #f68c11;
+    margin: 0;
+    padding: 0;
+    min-height: 100vh;
+    overflow-x: hidden;
+    position: relative;
+}
+
+/* Container */
+.container {
+    text-align: center;
+    background: rgba(0, 0, 0, 0.8);
+    padding: 40px;
+    border: 4px solid #f68c11;
+    border-radius: 15px;
+    box-shadow: 0 0 20px rgba(246, 140, 17, 0.6);
+    width: 90%;
+    max-width: 1200px;
+    margin: 20px auto;
+    position: relative;
+    z-index: 1;
+}
+
+/* Logo */
+.logo {
+    width: 250px;
+    margin-bottom: 20px;
+    filter: drop-shadow(0 0 10px rgba(246, 140, 17, 0.8));
+}
+
+/* Heading */
+h1 {
+    font-size: 2rem;
+    margin-bottom: 30px;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.5);
+}
+
+/* Game Grid */
+.game-grid {
+    display: grid;
+    grid-template-columns: 2fr 1fr;
+    gap: 30px;
+    margin-bottom: 40px;
+}
+
+.game-section, .vision-section {
+    background: rgba(0, 0, 0, 0.7);
+    padding: 20px;
+    border: 2px solid #f68c11;
+    border-radius: 10px;
+    text-align: center;
+}
+
+.game-section h2, .vision-section h2 {
+    font-size: 1.5rem;
+    margin-bottom: 15px;
+    text-shadow: 1px 1px 3px rgba(0, 0, 0, 0.5);
+}
+
+/* Iframe Container untuk Mengontrol Ukuran */
+.iframe-container {
+    position: relative;
+    width: 100%;
+    height: 500px;
+    overflow: hidden;
+    border-radius: 5px;
+}
+
+.game-iframe {
+    width: 100%;
+    height: 100%;
+    border: none;
+}
+
+.vision-feed {
+    max-width: 100%;
+    height: 400px;
+    object-fit: contain;
+    border: 2px solid #f68c11;
+    border-radius: 5px;
+    margin-bottom: 10px;
+}
+
+#action-text {
+    font-size: 1rem;
+    color: #fff;
+    margin-top: 10px;
+}
+
+.error-message {
+    font-size: 0.9rem;
+    color: #fff;
+    margin-top: 10px;
+}
+
+/* Button Styles */
+.btn {
+    display: inline-block;
+    padding: 12px 24px;
+    background-color: #f68c11;
+    color: #393536;
+    text-decoration: none;
+    border-radius: 5px;
+    font-size: 1rem;
+    border: 2px solid #fff;
+    box-shadow: 0 0 10px rgba(246, 140, 17, 0.8);
+    transition: all 0.3s ease;
+}
+
+.btn:hover {
+    background-color: #ff9f1c;
+    transform: translateY(-5px);
+    box-shadow: 0 0 20px rgba(246, 140, 17, 1);
+}
+
+/* Menu Navigation */
+.menu {
+    display: flex;
+    flex-direction: column;
+    gap: 15px;
+}
+
+/* Background Animation */
+body::before {
+    content: '';
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(45deg, #f68c11, #393536, #f68c11, #393536);
+    background-size: 400% 400%;
+    z-index: -1;
+    animation: gradientAnimation 10s ease infinite;
+}
+
+@keyframes gradientAnimation {
+    0% { background-position: 0% 50%; }
+    50% { background-position: 100% 50%; }
+    100% { background-position: 0% 50%; }
+}
+
+/* Responsive Design */
+@media (max-width: 768px) {
+    .game-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .iframe-container {
+        height: 400px;
+    }
+
+    .vision-feed {
+        height: 300px;
+    }
+
+    .container {
+        width: 95%;
+        padding: 20px;
+    }
+
+    h1 {
+        font-size: 1.5rem;
+    }
+}
