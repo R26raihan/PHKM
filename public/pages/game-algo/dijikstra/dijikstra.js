@@ -18,7 +18,7 @@ let gameOver = false;
 let stepCount = 0;
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 let treasureImage = new Image();
-treasureImage.src = '/src/assets/treasure.png'; // Pastikan path gambar benar
+treasureImage.src = '/assets/treasure.png'; // Pastikan path gambar benar
 
 function playSound(frequency, type = 'sine', duration = 0.1) {
   const oscillator = audioContext.createOscillator();
@@ -292,7 +292,7 @@ resetButton.addEventListener('click', () => {
 });
 
 const explanationImage = new Image();
-explanationImage.src = '/src/assets/People flying-bro.png';
+explanationImage.src = '/assets/People flying-bro.png';
 let particles = [];
 
 explanationImage.onload = () => {

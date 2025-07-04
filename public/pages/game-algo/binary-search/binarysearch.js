@@ -16,7 +16,7 @@ let particles = [];
 let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
 const explanationImage = new Image();
-explanationImage.src = '/src/assets/Select player-bro.png';
+explanationImage.src = '/assets/Select player-bro.png';
 
 // Fungsi untuk memutar suara
 function playSound(frequency, type = 'sine', duration = 0.1) {
