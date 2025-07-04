@@ -4,16 +4,19 @@
   <meta charset="UTF-8" />
   <meta name="viewport" content="width=device-width, initial-scale=1.0" />
   <title>Dijkstra Treasure Hunt</title>
-  <link rel="stylesheet" href="/src/styles/dijikstra.css" />
+  <link rel="stylesheet" href="/public/src/styles/dijikstra.css" />
 </head>
 <body>
   <div class="container">
     <h1>Mencari jalur</h1>
     <canvas id="gameCanvas" width="1000" height="500"></canvas>
-    <div>
+    <div class="stats">
+      <p id="stepDisplay">Langkah: 0</p>
+    </div>
+    <div class="controls">
       <button class="btn" id="startButton">Mulai Main</button>
       <button class="btn" id="resetButton">Reset</button>
-      <a href="/src/game-algo/listgame.html" class="btn" id="backButton">Kembali</a>
+      <a href="/public/src/game-algo/listgame.html" class="btn" id="backButton">Kembali</a>
     </div>
     <div class="rules">
       <h2>Aturan Main</h2>
@@ -33,5 +36,8 @@
     </div>
   </div>
   <script type="module" src="dijikstra.js"></script>
+  <audio id="backgroundMusic" loop>
+    <source src="/public/src/assets/minecraft-fortnite-roblox-background-music-368024.mp3" type="audio/mp3">
+  </audio>
 </body>
 </html>

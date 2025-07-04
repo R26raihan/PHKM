@@ -4,6 +4,7 @@ const ctx = canvas.getContext('2d');
 const guessButton = document.getElementById('guessButton');
 const resetButton = document.getElementById('resetButton');
 const guessInput = document.getElementById('guessInput');
+const backgroundMusic = document.getElementById('backgroundMusic');
 
 const GAME_OFFSET_X = 500;
 const MAX_ATTEMPTS = 7;
@@ -12,9 +13,29 @@ let attemptsLeft = MAX_ATTEMPTS;
 let gameOver = false;
 let guesses = [];
 let particles = [];
+let audioContext = new (window.AudioContext || window.webkitAudioContext)();
 
 const explanationImage = new Image();
 explanationImage.src = '/src/assets/Select player-bro.png';
+
+// Fungsi untuk memutar suara
+function playSound(frequency, type = 'sine', duration = 0.1) {
+  if (!audioContext) return;
+  try {
+    const oscillator = audioContext.createOscillator();
+    const gainNode = audioContext.createGain();
+    oscillator.type = type;
+    oscillator.frequency.setValueAtTime(frequency, audioContext.currentTime);
+    gainNode.gain.setValueAtTime(0.5, audioContext.currentTime);
+    oscillator.connect(gainNode);
+    gainNode.connect(audioContext.destination);
+    oscillator.start();
+    gainNode.gain.exponentialRampToValueAtTime(0.01, audioContext.currentTime + duration);
+    oscillator.stop(audioContext.currentTime + duration);
+  } catch (e) {
+    console.error('Error playing sound:', e);
+  }
+}
 
 // Algoritma Binary Search untuk petunjuk
 function binarySearchHint(guess, min, max) {
@@ -81,14 +102,12 @@ function drawGameGrid() {
   ctx.fillText('Tebak Angka', GAME_OFFSET_X + 250, 50);
   ctx.fillText(`Sisa Percobaan: ${attemptsLeft}`, GAME_OFFSET_X + 250, 100);
 
-  // Animasi tebakan sebelumnya dengan transisi warna
   guesses.forEach((guess, index) => {
     const yPos = 150 + index * 30;
     ctx.fillStyle = guess.hint === 'Tepat!' ? '#00ff00' : guess.hint === 'terlalu rendah' ? '#ff5555' : '#5555ff';
     ctx.font = '12px "Press Start 2P"';
     ctx.fillText(`Tebakan ${index + 1}: ${guess.value} - ${guess.hint}`, GAME_OFFSET_X + 250, yPos);
 
-    // Efek fade-in untuk tebakan baru
     if (index === guesses.length - 1 && !gameOver) {
       const fade = Math.sin(Date.now() * 0.005) * 0.5 + 0.5;
       ctx.fillStyle = `rgba(246, 140, 17, ${fade})`;
@@ -96,7 +115,6 @@ function drawGameGrid() {
     }
   });
 
-  // Tampilkan status game over atau menang
   if (gameOver) {
     ctx.fillStyle = 'rgba(0, 0, 0, 0.8)';
     ctx.fillRect(GAME_OFFSET_X, 0, 500, 500);
@@ -106,7 +124,6 @@ function drawGameGrid() {
     ctx.font = '12px "Press Start 2P"';
     ctx.fillText(`Angka Rahasia: ${secretNumber}`, GAME_OFFSET_X + 250, 300);
 
-    // Tambahkan partikel saat game over
     if (particles.length < 50) {
       for (let i = 0; i < 10; i++) {
         particles.push(new Particle(GAME_OFFSET_X + 250, 250));
@@ -114,7 +131,6 @@ function drawGameGrid() {
     }
   }
 
-  // Update dan gambar partikel
   particles = particles.filter(p => p.life > 0);
   particles.forEach(p => {
     p.update();
@@ -126,7 +142,7 @@ function draw() {
   ctx.clearRect(0, 0, canvas.width, canvas.height);
   drawExplanationGrid();
   drawGameGrid();
-  if (!gameOver) requestAnimationFrame(draw); // Loop animasi hanya saat game aktif
+  if (!gameOver) requestAnimationFrame(draw);
 }
 
 // Event tebakan
@@ -136,6 +152,7 @@ guessButton.addEventListener('click', () => {
   const guess = parseInt(guessInput.value);
   if (isNaN(guess) || guess < 1 || guess > 100) {
     alert('Masukkan angka antara 1 dan 100!');
+    playSound(300, 'square', 0.2); // Suara error
     return;
   }
 
@@ -144,16 +161,22 @@ guessButton.addEventListener('click', () => {
   if (result === 'benar') {
     guesses.push({ value: guess, hint: 'Tepat!' });
     gameOver = true;
+    playSound(800, 'sine', 0.5); // Suara kemenangan
   } else {
     guesses.push({ value: guess, hint: result.hint });
-    if (attemptsLeft === 0) gameOver = true;
+    if (attemptsLeft === 0) {
+      gameOver = true;
+      playSound(200, 'square', 0.3); // Suara kekalahan
+    } else {
+      playSound(400, 'triangle', 0.1); // Suara tebakan biasa
+    }
   }
 
   guessInput.value = '';
   draw();
 
   if (gameOver) {
-    setTimeout(() => draw(), 100); // Pastikan partikel terus bergerak setelah game over
+    setTimeout(() => draw(), 100);
   }
 });
 
@@ -166,16 +189,27 @@ resetButton.addEventListener('click', () => {
   particles = [];
   guessInput.value = '';
   draw();
-  requestAnimationFrame(draw); // Mulai ulang animasi
+  playSound(500, 'triangle', 0.2); // Suara reset
+  requestAnimationFrame(draw);
 });
 
 // Inisialisasi
 explanationImage.onload = () => {
   draw();
   requestAnimationFrame(draw);
+  if (backgroundMusic) {
+    backgroundMusic.play().catch(e => console.log('Autoplay blocked:', e));
+  }
 };
 explanationImage.onerror = () => {
-  console.error('Gagal memuat gambar. Pastikan file "People flying-bro.png" ada di direktori proyek.');
+  console.error('Gagal memuat gambar. Pastikan file "Select player-bro.png" ada di direktori proyek.');
   draw();
   requestAnimationFrame(draw);
+  if (backgroundMusic) {
+    backgroundMusic.play().catch(e => console.log('Autoplay blocked:', e));
+  }
 };
+
+if (!audioContext) {
+  console.warn('Web Audio API tidak didukung. Efek suara akan dinonaktifkan.');
+}
